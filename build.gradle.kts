@@ -1,9 +1,10 @@
 plugins {
     id("java")
+    kotlin("jvm")
 }
 
 group = "dev.toasters.rpg"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
@@ -18,6 +19,7 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
     compileOnly("com.github.ToastArgumentative:ToastWonderland:ALPHA-1.0.9-preview2")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks {
@@ -31,11 +33,13 @@ tasks {
     }
 
     jar {
-        //FIXME: Fix path for toast's mac
-        val paths = listOf("C:\\Users\\Faceless\\Desktop\\Servers\\Purpur 1.20.4\\plugins", "/Users/toast/Desktop/testserver/plugins")
-        paths.forEach { path ->
-            val file = File(path)
-            if (file.exists()) destinationDirectory.set(file)
+        val paths = listOf("C:\\Users\\Faceless\\Desktop\\Servers\\Purpur 1.20.4\\plugins", "/Users/toast/Desktop/testserver/plugins/")
+        val existingPath = paths.firstOrNull { File(it).exists() }
+
+        if (existingPath != null) {
+            destinationDirectory.set(layout.projectDirectory.dir(existingPath))
+        } else {
+            destinationDirectory.set(layout.buildDirectory.dir("libs")) // Fallback to default 'libs' directory
         }
     }
 
