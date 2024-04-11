@@ -31,9 +31,11 @@ tasks {
     }
 
     jar {
-        val paths = listOf("C:\\Users\\Faceless\\Desktop\\Servers\\Purpur 1.20.4\\plugins")
+        //FIXME: Fix path for toast's mac
+        val paths = listOf("C:\\Users\\Faceless\\Desktop\\Servers\\Purpur 1.20.4\\plugins", "/Users/toast/Desktop/testserver/plugins")
         paths.forEach { path ->
-            if (file(path).exists()) destinationDirectory.set(file(path))
+            val file = File(path)
+            if (file.exists()) destinationDirectory.set(file)
         }
     }
 
