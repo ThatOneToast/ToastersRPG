@@ -2,16 +2,16 @@ package dev.toastersrpg;
 
 import dev.toastersrpg.command.Command;
 import dev.toastersrpg.command.TestCommand;
+import dev.toastersrpg.materials.CraftingMaterials;
+import dev.toastersrpg.materials.Items;
 import dev.toastersrpg.texture.tasks.HealthUpdater;
 import org.bukkit.plugin.java.JavaPlugin;
 import pine.toast.library.Wonderland;
 import pine.toast.library.enchants.EnchantmentManager;
 import pine.toast.library.entities.EntityManager;
-import pine.toast.library.utilities.CooldownManager;
-import pine.toast.library.utilities.RecipeManager;
-import pine.toast.library.utilities.ScoreboardManager;
-import pine.toast.library.utilities.ScreenManager;
+import pine.toast.library.utilities.*;
 
+@SuppressWarnings("unused")
 public class ToastRpg extends JavaPlugin {
     private static JavaPlugin plugin;
 
@@ -24,6 +24,10 @@ public class ToastRpg extends JavaPlugin {
     private static final RecipeManager recipeManager = RecipeManager.INSTANCE;
     private static final ScreenManager screenManager = ScreenManager.INSTANCE;
 
+    // Plugin instances
+    private static final CraftingMaterials materials = CraftingMaterials.INSTANCE;
+    private static final Items items = Items.INSTANCE;
+
 
     @Override
     public void onEnable() {
@@ -34,6 +38,11 @@ public class ToastRpg extends JavaPlugin {
 
         Command.register(this, new TestCommand());
         HealthUpdater.getInstance().runTaskTimer(this, 0, 1);
+
+        // Registering recipes
+        recipeManager.createRecipe(materials.getEmpowermentStone(), items.getEmpowermentStone().build(), "empowerment_stone");
+        recipeManager.createRecipe(materials.getSwordOfHatred(), items.getSwordOfHatred().build(), "sword_of_hatred");
+
     }
 
     @Override
@@ -71,5 +80,13 @@ public class ToastRpg extends JavaPlugin {
 
     public static ScreenManager getScreenManager() {
         return screenManager;
+    }
+
+    public static CraftingMaterials getMaterials() {
+        return materials;
+    }
+
+    public static Items getItems() {
+        return items;
     }
 }
