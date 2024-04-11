@@ -5,7 +5,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import pine.toast.library.utilities.RecipeShape
 
-object CraftingMaterials {
+class CraftingMaterials {
 
     val empowermentStone = RecipeShape(
         ItemStack(Material.OBSIDIAN), ItemStack(Material.NETHER_STAR), ItemStack(Material.OBSIDIAN),

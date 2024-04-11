@@ -25,9 +25,8 @@ public class ToastRpg extends JavaPlugin {
     private static final ScreenManager screenManager = ScreenManager.INSTANCE;
 
     // Plugin instances
-    private static final CraftingMaterials materials = CraftingMaterials.INSTANCE;
-    private static final Items items = Items.INSTANCE;
-
+    private static CraftingMaterials materials;
+    private static Items items;
 
     @Override
     public void onEnable() {
@@ -39,9 +38,14 @@ public class ToastRpg extends JavaPlugin {
         Command.register(this, new TestCommand());
         HealthUpdater.getInstance().runTaskTimer(this, 0, 1);
 
+        materials = new CraftingMaterials();
+        items = new Items();
+
         // Registering recipes
         recipeManager.createRecipe(materials.getEmpowermentStone(), items.getEmpowermentStone().build(), "empowerment_stone");
         recipeManager.createRecipe(materials.getSwordOfHatred(), items.getSwordOfHatred().build(), "sword_of_hatred");
+
+        recipeManager.registerRecipes();
 
     }
 
@@ -83,10 +87,12 @@ public class ToastRpg extends JavaPlugin {
     }
 
     public static CraftingMaterials getMaterials() {
+        if (materials == null) materials = new CraftingMaterials();
         return materials;
     }
 
     public static Items getItems() {
+        if (items == null) items = new Items();
         return items;
     }
 }

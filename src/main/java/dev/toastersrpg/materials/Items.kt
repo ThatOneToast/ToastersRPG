@@ -9,7 +9,7 @@ import org.bukkit.enchantments.Enchantment
 import pine.toast.library.items.ItemBlueprint
 import pine.toast.library.utilities.WonderlandColors
 
-object Items {
+class Items {
 
     private val empowermentStoneLore = mutableListOf(
         "${WonderlandColors.WHITE.code} This stone can grant you special powers!"
