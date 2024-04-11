@@ -1,14 +1,8 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     id("java")
     kotlin("jvm")
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
-
-val shadowImplementation: Configuration by configurations.creating
-configurations["compileOnly"].extendsFrom(shadowImplementation)
-configurations["testImplementation"].extendsFrom(shadowImplementation)
 
 group = "dev.toasters.rpg"
 version = "1.0.0"
@@ -25,14 +19,14 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
-    shadowImplementation("com.github.ToastArgumentative:ToastWonderland:ALPHA-1.0.9-preview2")
-    implementation(kotlin("stdlib-jdk8"))
+    implementation("com.github.ToastArgumentative:ToastWonderland:ALPHA-1.0.9-preview2")
+    compileOnly(kotlin("stdlib-jdk8"))
 }
 
 tasks {
     assemble {
-        dependsOn("sourcesJar")
         dependsOn("shadowJar")
+        dependsOn("sourcesJar")
     }
 
     register<Jar>("sourcesJar") {
@@ -41,12 +35,13 @@ tasks {
     }
 
     shadowJar {
-        archiveFileName.set("ToastRpg.jar")
+        archiveFileName.set("ToastRpg-$version.jar")
         relocate("com.github.ToastArgumentative", "dev.toastersrpg.lib")
-    }
 
-    jar {
-        val paths = listOf("C:\\Users\\Faceless\\Desktop\\Servers\\Purpur 1.20.4\\plugins", "/Users/toast/Desktop/testserver/plugins/")
+        val paths = listOf (
+            "C:\\Users\\Faceless\\Desktop\\Servers\\Purpur 1.20.4\\plugins",
+            "/Users/toast/Desktop/testserver/plugins/"
+        )
         val existingPath = paths.firstOrNull { File(it).exists() }
 
         if (existingPath != null) {

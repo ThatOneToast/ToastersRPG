@@ -8,27 +8,14 @@ import pine.toast.library.utilities.RecipeShape
 object CraftingMaterials {
 
     val empowermentStone = RecipeShape(
-        ItemStack(Material.OBSIDIAN),
-        ItemStack(Material.NETHER_STAR),
-        ItemStack(Material.OBSIDIAN),
-        ItemStack(Material.NETHER_STAR),
-        ItemStack(Material.NETHERITE_INGOT),
-        ItemStack(Material.NETHER_STAR),
-        ItemStack(Material.OBSIDIAN),
-        ItemStack(Material.NETHER_STAR),
-        ItemStack(Material.OBSIDIAN)
+        ItemStack(Material.OBSIDIAN), ItemStack(Material.NETHER_STAR), ItemStack(Material.OBSIDIAN),
+        ItemStack(Material.NETHER_STAR), ItemStack(Material.NETHERITE_INGOT), ItemStack(Material.NETHER_STAR),
+        ItemStack(Material.OBSIDIAN), ItemStack(Material.NETHER_STAR), ItemStack(Material.OBSIDIAN)
     )
 
     val swordOfHatred = RecipeShape(
-        null,
-        ItemStack(ToastRpg.getItems().empowermentStone.build()),
-        null,
-        null,
-        ItemStack(ToastRpg.getItems().empowermentStone.build()),
-        null,
-        null,
-        ItemStack(Material.NETHERITE_BLOCK),
-        null
+        null, ItemStack(ToastRpg.getItems().empowermentStone.build()), null,
+        null, ItemStack(ToastRpg.getItems().empowermentStone.build()), null,
+        null, ItemStack(Material.NETHERITE_BLOCK), null
     )
-
 }

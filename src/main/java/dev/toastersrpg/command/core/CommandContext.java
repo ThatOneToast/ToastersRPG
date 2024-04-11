@@ -1,4 +1,4 @@
-package dev.toastersrpg.command;
+package dev.toastersrpg.command.core;
 
 import org.bukkit.command.CommandSender;
 

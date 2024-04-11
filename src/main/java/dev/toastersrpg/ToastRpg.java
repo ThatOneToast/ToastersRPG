@@ -1,6 +1,6 @@
 package dev.toastersrpg;
 
-import dev.toastersrpg.command.Command;
+import dev.toastersrpg.command.core.Command;
 import dev.toastersrpg.command.TestCommand;
 import dev.toastersrpg.materials.CraftingMaterials;
 import dev.toastersrpg.materials.Items;

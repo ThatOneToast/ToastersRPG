@@ -1,5 +1,9 @@
 package dev.toastersrpg.command;
 
+import dev.toastersrpg.command.core.Command;
+import dev.toastersrpg.command.core.CommandContext;
+import dev.toastersrpg.command.core.ICommand;
+import dev.toastersrpg.command.core.ITabComplete;
 import dev.toastersrpg.texture.Textures;
 import net.kyori.adventure.text.Component;
 
