@@ -1,109 +1,62 @@
-package dev.toastersrpg;
+package dev.toastersrpg
 
-import dev.toastersrpg.command.core.Command;
-import dev.toastersrpg.command.TestCommand;
-import dev.toastersrpg.inventories.RaceInv;
-import dev.toastersrpg.materials.CraftingMaterials;
-import dev.toastersrpg.materials.Items;
-import dev.toastersrpg.texture.tasks.HealthUpdater;
-import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
-import pine.toast.library.Wonderland;
-import pine.toast.library.enchants.EnchantmentManager;
-import pine.toast.library.entities.EntityManager;
-import pine.toast.library.utilities.*;
+import dev.toastersrpg.inventories.RaceInv
+import dev.toastersrpg.materials.CraftingMaterials
+import dev.toastersrpg.materials.Items
+import org.bukkit.command.Command
+import org.bukkit.command.CommandSender
+import org.bukkit.plugin.java.JavaPlugin
+import pine.toast.library.Wonderland
+import pine.toast.library.utilities.RecipeManager
 
-@SuppressWarnings("unused")
-public class ToastRpg extends JavaPlugin {
-    private static JavaPlugin plugin;
+class ToastRpg : JavaPlugin() {
 
-    // Wonderland instances
-    private static final Wonderland wonderland = Wonderland.INSTANCE;
-    private static final EnchantmentManager enchantmentManager = EnchantmentManager.INSTANCE;
-    private static final CooldownManager cooldownManager = CooldownManager.INSTANCE;
-    private static final EntityManager entityManager = EntityManager.INSTANCE;
-    private static final ScoreboardManager scoreboardManager = ScoreboardManager.INSTANCE;
-    private static final RecipeManager recipeManager = RecipeManager.INSTANCE;
-    private static final ScreenManager screenManager = ScreenManager.INSTANCE;
+    override fun onEnable() {
+        instance = this
 
-    // Plugin instances
-    private static CraftingMaterials materials;
-    private static Items items;
+        Wonderland.initialize(this)
+        Wonderland.getCommandManager().registerCommands(Commands())
+        Wonderland.getInvManager().registerInventory(RaceInv())
 
-    @Override
-    public void onEnable() {
-        plugin = this;
+        RecipeManager.createRecipe(materials.empowermentStone, items.empowermentStone.build(), "empowerment_stone")
+        RecipeManager.createRecipe(materials.swordOfHatred, items.swordOfHatred.build(), "sword_of_hatred")
 
-        wonderland.initialize(plugin);
-        wonderland.getCommandManager().registerCommands(new Commands());
-
-        Command.register(this, new TestCommand());
-        HealthUpdater.getInstance().runTaskTimer(this, 0, 1);
-
-        wonderland.getInvManager().registerInventory(new RaceInv());
-
-        materials = new CraftingMaterials();
-        items = new Items();
-
-        // Registering recipes
-        recipeManager.createRecipe(materials.getEmpowermentStone(), items.getEmpowermentStone().build(), "empowerment_stone");
-        recipeManager.createRecipe(materials.getSwordOfHatred(), items.getSwordOfHatred().build(), "sword_of_hatred");
-
-        recipeManager.registerRecipes();
-
+        RecipeManager.registerRecipes()
+        logger.info("ToastRPG has been enabled!")
     }
 
-    // Keep the import in params because your Command class causes issues with this
-    @Override
-    public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
-        return wonderland.getCommandManager().executeCommand(sender, label, args);
+    override fun onDisable() {
+        logger.info("ToastRPG has been disabled.")
     }
 
-    @Override
-    public void onDisable() {
-        HealthUpdater.getInstance().cancel();
+    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {
+        return Wonderland.getCommandManager().executeCommand(sender, label, args)
     }
 
-    public static JavaPlugin getPlugin() {
-        return plugin;
-    }
+    companion object {
+        @JvmStatic
+        private var instance: ToastRpg? = null
 
-    public static Wonderland getWonderland() {
-        return wonderland;
-    }
+        @JvmStatic
+        private var items = Items()
 
-    public static EnchantmentManager getEnchantmentManager() {
-        return enchantmentManager;
-    }
+        @JvmStatic
+        private var materials = CraftingMaterials()
 
-    public static CooldownManager getCooldownManager() {
-        return cooldownManager;
-    }
+        @JvmStatic
+        fun getPlugin(): ToastRpg {
+            return instance ?: throw IllegalStateException("Plugin not initialized")
+        }
 
-    public static EntityManager getEntityManager() {
-        return entityManager;
-    }
+        @JvmStatic
+        fun getItems(): Items {
+            return items
+        }
 
-    public static ScoreboardManager getScoreboardManager() {
-        return scoreboardManager;
-    }
+        @JvmStatic
+        fun getMaterials(): CraftingMaterials {
+            return materials
+        }
 
-    public static RecipeManager getRecipeManager() {
-        return recipeManager;
-    }
-
-    public static ScreenManager getScreenManager() {
-        return screenManager;
-    }
-
-    public static CraftingMaterials getMaterials() {
-        if (materials == null) materials = new CraftingMaterials();
-        return materials;
-    }
-
-    public static Items getItems() {
-        if (items == null) items = new Items();
-        return items;
     }
 }

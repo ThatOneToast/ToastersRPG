@@ -14,8 +14,8 @@ class CraftingMaterials {
     )
 
     val swordOfHatred = RecipeShape(
-        null, ItemStack(ToastRpg.getItems().empowermentStone.build()), null,
-        null, ItemStack(ToastRpg.getItems().empowermentStone.build()), null,
+        null, ItemStack(ToastRpg.getItems()!!.empowermentStone.build()), null,
+        null, ItemStack(ToastRpg.getItems()!!.empowermentStone.build()), null,
         null, ItemStack(Material.NETHERITE_BLOCK), null
     )
 }
