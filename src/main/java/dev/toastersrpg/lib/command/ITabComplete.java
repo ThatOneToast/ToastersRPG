@@ -1,4 +1,4 @@
-package dev.toastersrpg.command.core;
+package dev.toastersrpg.lib.command;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

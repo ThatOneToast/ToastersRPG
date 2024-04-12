@@ -25,12 +25,8 @@ public class HealthUpdater extends BukkitRunnable {
         for (int i = 0; i < 19; i++) background = background.append(neg20);
         background = background.append(backgroundHud);
 
-        int playerHealth = (int) player.getHealth() / 2;
-        int healthCellsLeft = Math.min(20, playerHealth);
-
-        Component healthCells = Component.text(""); // positioned
-        for (int i = 0; i < 6; i++) healthCells = healthCells.append(neg20);
-        for(int i = 0; i < healthCellsLeft; i++) healthCells = healthCells.append(healthHud).append(neg3);
+        Component healthCells = Component.text("");
+        for(int i = 0; i < player.getHealth() / 2; i ++) healthCells = healthCells.append(neg3).append(healthHud);
 
         player.sendActionBar(background.append(healthCells));
     }

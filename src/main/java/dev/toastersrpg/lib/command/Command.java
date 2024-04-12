@@ -1,4 +1,4 @@
-package dev.toastersrpg.command.core;
+package dev.toastersrpg.lib.command;
 
 import dev.toastersrpg.ToastRpg;
 import org.bukkit.Bukkit;

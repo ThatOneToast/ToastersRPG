@@ -1,9 +1,9 @@
-package dev.toastersrpg.command;
+package dev.toastersrpg.command.faceless;
 
-import dev.toastersrpg.command.core.Command;
-import dev.toastersrpg.command.core.CommandContext;
-import dev.toastersrpg.command.core.ICommand;
-import dev.toastersrpg.command.core.ITabComplete;
+import dev.toastersrpg.lib.command.Command;
+import dev.toastersrpg.lib.command.CommandContext;
+import dev.toastersrpg.lib.command.ICommand;
+import dev.toastersrpg.lib.command.ITabComplete;
 import dev.toastersrpg.texture.Textures;
 import net.kyori.adventure.text.Component;
 

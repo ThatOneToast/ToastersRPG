@@ -36,7 +36,6 @@ tasks {
 
     shadowJar {
         archiveFileName.set("ToastRpg-$version.jar")
-        relocate("com.github.ToastArgumentative", "dev.toastersrpg.lib")
 
         val paths = listOf (
             "C:\\Users\\Faceless\\Desktop\\Servers\\Purpur 1.20.4\\plugins",

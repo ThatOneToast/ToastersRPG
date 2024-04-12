@@ -1,4 +1,4 @@
-package dev.toastersrpg
+package dev.toastersrpg.command.toast
 
 import org.bukkit.entity.Player
 import pine.toast.library.Wonderland

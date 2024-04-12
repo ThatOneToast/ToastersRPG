@@ -1,5 +1,6 @@
 package dev.toastersrpg
 
+import dev.toastersrpg.command.toast.Commands
 import dev.toastersrpg.inventories.RaceInv
 import dev.toastersrpg.materials.CraftingMaterials
 import dev.toastersrpg.materials.Items
@@ -21,7 +22,6 @@ class ToastRpg : JavaPlugin() {
         RecipeManager.createRecipe(materials.empowermentStone, items.empowermentStone.build(), "empowerment_stone")
         RecipeManager.createRecipe(materials.swordOfHatred, items.swordOfHatred.build(), "sword_of_hatred")
 
-        RecipeManager.registerRecipes()
         logger.info("ToastRPG has been enabled!")
     }
 
