@@ -6,6 +6,7 @@ import org.bukkit.Material
 import org.bukkit.attribute.Attribute
 import org.bukkit.attribute.AttributeModifier
 import org.bukkit.enchantments.Enchantment
+import org.bukkit.inventory.ItemFlag
 import pine.toast.library.items.ItemBlueprint
 import pine.toast.library.utilities.WonderlandColors
 
@@ -52,7 +53,7 @@ class Items {
         Material.NETHERITE_SWORD,
         swordOfHatredEnchants,
         swordOfHatredAttr,
-        null,
+        setOf(ItemFlag.HIDE_ATTRIBUTES),
         SwordOfHatredHandler::class.java
 
 
