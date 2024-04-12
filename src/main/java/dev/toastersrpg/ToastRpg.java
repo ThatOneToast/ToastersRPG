@@ -2,10 +2,13 @@ package dev.toastersrpg;
 
 import dev.toastersrpg.command.core.Command;
 import dev.toastersrpg.command.TestCommand;
+import dev.toastersrpg.inventories.RaceInv;
 import dev.toastersrpg.materials.CraftingMaterials;
 import dev.toastersrpg.materials.Items;
 import dev.toastersrpg.texture.tasks.HealthUpdater;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 import pine.toast.library.Wonderland;
 import pine.toast.library.enchants.EnchantmentManager;
 import pine.toast.library.entities.EntityManager;
@@ -38,6 +41,8 @@ public class ToastRpg extends JavaPlugin {
         Command.register(this, new TestCommand());
         HealthUpdater.getInstance().runTaskTimer(this, 0, 1);
 
+        wonderland.getInvManager().registerInventory(new RaceInv());
+
         materials = new CraftingMaterials();
         items = new Items();
 
@@ -47,6 +52,12 @@ public class ToastRpg extends JavaPlugin {
 
         recipeManager.registerRecipes();
 
+    }
+
+    // Keep the import in params because your Command class causes issues with this
+    @Override
+    public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
+        return wonderland.getCommandManager().executeCommand(sender, label, args);
     }
 
     @Override
