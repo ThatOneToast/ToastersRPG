@@ -4,6 +4,8 @@ import dev.toastersrpg.command.toast.Commands
 import dev.toastersrpg.inventories.RaceInv
 import dev.toastersrpg.materials.CraftingMaterials
 import dev.toastersrpg.materials.Items
+import dev.toastersrpg.races.RaceManager
+import dev.toastersrpg.worldelements.Mana
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
@@ -22,10 +24,14 @@ class ToastRpg : JavaPlugin() {
         RecipeManager.createRecipe(materials.empowermentStone, items.empowermentStone.build(), "empowerment_stone")
         RecipeManager.createRecipe(materials.swordOfHatred, items.swordOfHatred.build(), "sword_of_hatred")
 
+
+        mana.setup()
+
         logger.info("ToastRPG has been enabled!")
     }
 
     override fun onDisable() {
+        Wonderland.shutDown()
         logger.info("ToastRPG has been disabled.")
     }
 
@@ -38,10 +44,16 @@ class ToastRpg : JavaPlugin() {
         private var instance: ToastRpg? = null
 
         @JvmStatic
-        private var items = Items()
+        private val items = Items()
 
         @JvmStatic
-        private var materials = CraftingMaterials()
+        private val materials = CraftingMaterials()
+
+        @JvmStatic
+        private val raceManager = RaceManager()
+
+        @JvmStatic
+        private val mana = Mana()
 
         @JvmStatic
         fun getPlugin(): ToastRpg {
@@ -56,6 +68,16 @@ class ToastRpg : JavaPlugin() {
         @JvmStatic
         fun getMaterials(): CraftingMaterials {
             return materials
+        }
+
+        @JvmStatic
+        fun getRaceManager(): RaceManager {
+            return raceManager
+        }
+
+        @JvmStatic
+        fun getMana(): Mana {
+            return mana
         }
 
     }
