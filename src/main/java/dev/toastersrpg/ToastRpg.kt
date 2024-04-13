@@ -4,7 +4,6 @@ import dev.toastersrpg.command.toast.Commands
 import dev.toastersrpg.inventories.RaceInv
 import dev.toastersrpg.materials.CraftingMaterials
 import dev.toastersrpg.materials.Items
-import dev.toastersrpg.races.RaceManager
 import dev.toastersrpg.worldelements.Mana
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
@@ -50,9 +49,6 @@ class ToastRpg : JavaPlugin() {
         private val materials = CraftingMaterials()
 
         @JvmStatic
-        private val raceManager = RaceManager()
-
-        @JvmStatic
         private val mana = Mana()
 
         @JvmStatic
@@ -68,11 +64,6 @@ class ToastRpg : JavaPlugin() {
         @JvmStatic
         fun getMaterials(): CraftingMaterials {
             return materials
-        }
-
-        @JvmStatic
-        fun getRaceManager(): RaceManager {
-            return raceManager
         }
 
         @JvmStatic
