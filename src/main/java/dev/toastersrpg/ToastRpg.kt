@@ -1,10 +1,8 @@
 package dev.toastersrpg
 
 import dev.toastersrpg.command.toast.Commands
-import dev.toastersrpg.inventories.RaceInv
 import dev.toastersrpg.materials.CraftingMaterials
 import dev.toastersrpg.materials.Items
-import dev.toastersrpg.worldelements.Mana
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
@@ -18,13 +16,10 @@ class ToastRpg : JavaPlugin() {
 
         Wonderland.initialize(this)
         Wonderland.getCommandManager().registerCommands(Commands())
-        Wonderland.getInvManager().registerInventory(RaceInv())
 
         RecipeManager.createRecipe(materials.empowermentStone, items.empowermentStone.build(), "empowerment_stone")
         RecipeManager.createRecipe(materials.swordOfHatred, items.swordOfHatred.build(), "sword_of_hatred")
 
-
-        mana.setup()
 
         logger.info("ToastRPG has been enabled!")
     }
@@ -48,8 +43,6 @@ class ToastRpg : JavaPlugin() {
         @JvmStatic
         private val materials = CraftingMaterials()
 
-        @JvmStatic
-        private val mana = Mana()
 
         @JvmStatic
         fun getPlugin(): ToastRpg {
@@ -66,10 +59,6 @@ class ToastRpg : JavaPlugin() {
             return materials
         }
 
-        @JvmStatic
-        fun getMana(): Mana {
-            return mana
-        }
 
     }
 }
