@@ -8,7 +8,9 @@ group = "dev.toasters.rpg"
 version = "1.0.0"
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 repositories {
@@ -19,7 +21,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
-    implementation("com.github.ToastArgumentative:ToastWonderland:1.0.9-preview8")
+    implementation("com.github.ToastArgumentative:ToastWonderland:1.0.9-preview13")
     compileOnly(kotlin("stdlib-jdk8"))
 }
 

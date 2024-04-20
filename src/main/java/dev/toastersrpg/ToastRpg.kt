@@ -3,6 +3,7 @@ package dev.toastersrpg
 import dev.toastersrpg.command.toast.Commands
 import dev.toastersrpg.materials.CraftingMaterials
 import dev.toastersrpg.materials.Items
+import dev.toastersrpg.worldelements.Mana
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
@@ -19,6 +20,10 @@ class ToastRpg : JavaPlugin() {
 
         RecipeManager.createRecipe(materials.empowermentStone, items.empowermentStone.build(), "empowerment_stone")
         RecipeManager.createRecipe(materials.swordOfHatred, items.swordOfHatred.build(), "sword_of_hatred")
+
+        mana.manaRegenTick(this)
+
+
 
 
         logger.info("ToastRPG has been enabled!")
@@ -43,6 +48,8 @@ class ToastRpg : JavaPlugin() {
         @JvmStatic
         private val materials = CraftingMaterials()
 
+        @JvmStatic
+        private val mana = Mana()
 
         @JvmStatic
         fun getPlugin(): ToastRpg {
@@ -57,6 +64,11 @@ class ToastRpg : JavaPlugin() {
         @JvmStatic
         fun getMaterials(): CraftingMaterials {
             return materials
+        }
+
+        @JvmStatic
+        fun getMana(): Mana {
+            return mana
         }
 
 
