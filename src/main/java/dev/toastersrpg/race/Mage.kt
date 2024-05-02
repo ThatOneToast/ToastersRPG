@@ -27,6 +27,8 @@ class Mage : RaceInfo(), Serializable {
         set(value) {}
 
     override fun applySkills() {
-        skills.add(FireballSkill())
+        val fireball = FireballSkill()
+        fireball.register()
+        skills.add(fireball)
     }
 }

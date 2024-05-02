@@ -57,6 +57,7 @@ class Mana {
         object : BukkitRunnable() {
             override fun run() {
                 for (player: Player in Bukkit.getServer().onlinePlayers) {
+                    player.persistentDataContainer.get(Keys.RACE_INFO, AdptManager.raceInfoAdapter) ?: continue
                     val regen = getRegenMana(player.uniqueId)
                     addMana(player.uniqueId, regen)
 

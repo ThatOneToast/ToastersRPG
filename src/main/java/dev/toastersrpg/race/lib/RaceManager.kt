@@ -34,6 +34,7 @@ object RaceManager {
         player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)?.baseValue = damage
         player.getAttribute(Attribute.GENERIC_ARMOR)?.baseValue = defense
 
+        raceInfo.applySkills()
         player.sendMessage(Component.text("${WonderlandColors.GREEN.code}Applied ${raceInfo.race}"))
     }
 

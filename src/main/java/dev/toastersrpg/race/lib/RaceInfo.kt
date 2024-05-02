@@ -1,5 +1,8 @@
 package dev.toastersrpg.race.lib
 
+import dev.toastersrpg.ToastRpg
+import org.bukkit.NamespacedKey
+
 abstract class RaceInfo(
 ) {
 
@@ -34,6 +37,10 @@ abstract class RaceInfo(
             skills.add(newSkill)
         }
 
+    }
+
+    fun getKey(): NamespacedKey {
+        return NamespacedKey(ToastRpg.getPlugin(), race)
     }
 
     abstract fun applySkills()
