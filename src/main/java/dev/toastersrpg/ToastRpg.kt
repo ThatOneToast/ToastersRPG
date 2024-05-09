@@ -1,9 +1,10 @@
 package dev.toastersrpg
 
+import dev.toastersrpg.command.faceless.HudCommand
 import dev.toastersrpg.command.toast.Commands
 import dev.toastersrpg.materials.CraftingMaterials
 import dev.toastersrpg.materials.Items
-import dev.toastersrpg.race.lib.SkillManager
+import dev.toastersrpg.texture.tasks.HealthUpdater
 import dev.toastersrpg.worldelements.Mana
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
@@ -19,15 +20,17 @@ class ToastRpg : JavaPlugin() {
         Wonderland.initialize(this)
         Wonderland.getCommandManager().registerCommands(Commands())
 
-        server.pluginManager.registerEvents(SkillManager, this)
+        // server.pluginManager.registerEvents(SkillManager, this)
 
         RecipeManager.createRecipe(materials.empowermentStone, items.empowermentStone.build(), "empowerment_stone")
         RecipeManager.createRecipe(materials.swordOfHatred, items.swordOfHatred.build(), "sword_of_hatred")
 
+         HealthUpdater.getInstance().runTaskTimer(this, 0, 1)
+        dev.toastersrpg.lib.command.Command.register(this,
+            HudCommand()
+        )
+
         mana.manaRegenTick(this)
-
-
-
 
         logger.info("ToastRPG has been enabled!")
     }

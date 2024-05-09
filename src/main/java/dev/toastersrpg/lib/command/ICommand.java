@@ -10,6 +10,7 @@ import java.lang.annotation.Target;
 public @interface ICommand {
     String name() default "";
     String permission() default "";
+    String tabCompleter() default "";
     int cooldown() default 1;
     boolean noArgs() default false;
 }

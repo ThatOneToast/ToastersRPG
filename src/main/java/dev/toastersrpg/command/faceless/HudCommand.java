@@ -13,15 +13,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
-public class TestCommand extends Command {
+public class HudCommand extends Command {
 
-    public TestCommand() {
-        super("test");
+    public HudCommand() {
+        super("hud");
     }
 
-    @ICommand(noArgs = true)
     public void noArgs(CommandContext context) {
-        context.sender().sendMessage(usageMessage);
+        context.sender().sendMessage("invalid args");
     }
 
     @ICommand
@@ -30,8 +29,8 @@ public class TestCommand extends Command {
 
         for (String arg : context.args()) {
             try {
-                Textures.Codes code = Textures.Codes.valueOf(arg);
-                Component component = Component.text(code.getCode()).font(code.getKey());
+                Textures code = Textures.valueOf(arg);
+                Component component = Component.text(code.code).font(code.key);
                 components.add(component);
             } catch (IllegalArgumentException ignored) {}
         }
@@ -53,8 +52,8 @@ public class TestCommand extends Command {
 
         for (String arg : context.args()) {
             try {
-                Textures.Codes code = Textures.Codes.valueOf(arg);
-                Component component = Component.text(code.getCode()).font(code.getKey());
+                Textures code = Textures.valueOf(arg);
+                Component component = Component.text(code.code).font(code.key);
                 components.add(component);
             } catch (IllegalArgumentException ignored) {}
         }
@@ -70,14 +69,12 @@ public class TestCommand extends Command {
         }
     }
 
-
-
     @ITabComplete(name = "sendChat")
     public List<String> sendChatTab(CommandContext context) {
         String[] args = context.args();
 
-        return Arrays.stream(Textures.Codes.values())
-                .map(Textures.Codes::toString)
+        return Arrays.stream(Textures.values())
+                .map(Textures::toString)
                 .filter(name -> {
                     for (String arg : args) {
                         if (name.toLowerCase().startsWith(arg.toLowerCase())) return true;
@@ -91,8 +88,8 @@ public class TestCommand extends Command {
     public List<String> sendActionBarTab(CommandContext context) {
         String[] args = context.args();
 
-        return Arrays.stream(Textures.Codes.values())
-                .map(Textures.Codes::toString)
+        return Arrays.stream(Textures.values())
+                .map(Textures::toString)
                 .filter(name -> {
                     for (String arg : args) {
                         if (name.toLowerCase().startsWith(arg.toLowerCase())) return true;
@@ -101,5 +98,4 @@ public class TestCommand extends Command {
                 })
                 .collect(Collectors.toList());
     }
-
 }

@@ -39,16 +39,11 @@ tasks {
     shadowJar {
         archiveFileName.set("ToastRpg-$version.jar")
 
-        val paths = listOf (
-            "C:\\Users\\Faceless\\Desktop\\Servers\\Purpur 1.20.4\\plugins",
-            "/Users/toast/Desktop/testserver/plugins/"
-        )
-        val existingPath = paths.firstOrNull { File(it).exists() }
+        val paths = listOf ("C:\\Users\\Faceless\\Desktop\\Minecraft DevKit\\Servers\\Paper 1.20.4\\plugins")
 
-        if (existingPath != null) {
-            destinationDirectory.set(layout.projectDirectory.dir(existingPath))
-        } else {
-            destinationDirectory.set(layout.buildDirectory.dir("libs")) // Fallback to default 'libs' directory
+        paths.forEach { path ->
+            val outputDir = project.file(path)
+            destinationDirectory.set(outputDir)
         }
     }
 

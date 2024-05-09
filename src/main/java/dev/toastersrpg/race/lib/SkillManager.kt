@@ -34,7 +34,6 @@ object SkillManager : Listener{
         skills.add(skill)
     }
 
-
     @EventHandler(priority = EventPriority.HIGHEST)
     fun handleWeaponSkill(event: PlayerRightClickEvent) {
         val player: Player = event.getPlayer()
